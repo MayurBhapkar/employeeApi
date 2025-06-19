@@ -27,9 +27,10 @@ namespace employeeApi.Controllers
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var res = _dbContext.employees.FirstOrDefault(x => x.id == id);
+            return new JsonResult(res);
         }
 
         // POST api/<EmployeeController>
@@ -55,8 +56,21 @@ namespace employeeApi.Controllers
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] employeeDto value)
         {
+            var res = _dbContext.employees.FirstOrDefault(x => x.id == id);
+
+            res.name= value.name;
+            res.address= value.address;
+            res.salary= value.salary;
+            res.gender= value.gender;
+            res.dob= value.dob;
+            res.departmentId= value.departmentId;
+
+            _dbContext.employees.Update(res);
+            _dbContext.SaveChanges();
+            return new JsonResult(new { message = "Record Updated Successfully." });
+
         }
 
         // DELETE api/<EmployeeController>/5
