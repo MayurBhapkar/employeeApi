@@ -7,7 +7,10 @@ namespace employeeApi.Shared
         {
             public YouDbContext(DbContextOptions<YouDbContext> options) : base(options)
             {
+
             }
+
+
 
         public DbSet<department> departments { get; set; }
 
