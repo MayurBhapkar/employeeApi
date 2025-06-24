@@ -45,8 +45,7 @@ namespace employeeApi.Controllers
                     outTime=e.outTime,
                     totalHrs=e.totalHrs,
                     roleType = e.roleType,
-                    
-                   
+                       
                 })
                 .ToListAsync();
 
@@ -127,6 +126,21 @@ namespace employeeApi.Controllers
             _dbContext.SaveChanges();
             return new JsonResult(new { message = "Record Updated Successfully." });
 
+        }
+
+        [HttpPut("InTimeUpdate/{id}")]
+        public IActionResult InTimeUpdate(int id, [FromBody] InTimeUpdateDto value)
+        {
+            var res = _dbContext.employees.FirstOrDefault(x => x.id == id);
+
+            res.name = value.name;    
+            res.inTime = value.inTime;
+            res.outTime = value.outTime;
+            res.totalHrs = value.totalHrs;
+            
+            _dbContext.employees.Update(res);
+            _dbContext.SaveChanges();
+            return new JsonResult(new { message = "Record Updated Successfully." });
         }
 
         // DELETE api/<EmployeeController>/5

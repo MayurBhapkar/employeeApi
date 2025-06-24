@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using employeeApi.Shared;
 
@@ -11,9 +12,11 @@ using employeeApi.Shared;
 namespace employeeApi.Migrations
 {
     [DbContext(typeof(YouDbContext))]
-    partial class YouDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250621053613_21-6-2025-1")]
+    partial class _21620251
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
